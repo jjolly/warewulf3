@@ -53,7 +53,10 @@ busybox:
 		for i in $(BUSYBOX_PATCHES); do \
 			(cd _work/$(BUSYBOX_DIR); patch -p1 < ../../$${i} || exit 1) \
 		done ;\
-		cp $(srcdir)/busybox.config _work/busybox-$(BUSYBOX_VERSION)/.config ;\
+		sed -e 's/"/\\"/g' \
+		    -e 's#@\([^@]\+\)@#$$(\1 2>/dev/null)#g' \
+	            -e '/^[^#]/s#\(.*\)#echo \1#e' < $(srcdir)/busybox.config \
+	          > _work/busybox-$(BUSYBOX_VERSION)/.config ;\
 	fi
 	@ if [ ! -f "_work/$(BUSYBOX_DIR)/" ]; then \
 		echo "Building initramfs core" ;\
