@@ -59,6 +59,9 @@ PERL_VENDORLIB="$force_prefix$PERL_VENDORLIB"
 AC_MSG_RESULT($PERL_VENDORLIB)
 AC_SUBST(PERL_VENDORLIB)
 
+FIND_LOCAL(haveged, haveged)
+
+
 #AC_CHECK_LIB(fuse, fuse_main, , [
 #AC_MSG_ERROR([Fatal:  Fuse libraries not found.])
 #])

@@ -34,6 +34,13 @@ clear
 msg_blue "Now Booting Warewulf...\n"
 echo
 
+# Some systems do not have enough entropy for parted.
+# HAVEGEd should provide enough when started early.
+if [ -x /usr/sbin/haveged ]; then
+    msg_white "Starting HAVEGEd\n"
+    /usr/sbin/haveged -F >/dev/null 2>&1 &
+fi
+
 if [ -n "$WWHOSTNAME" ]; then
     HOSTNAME="$WWHOSTNAME"
     export HOSTNAME
