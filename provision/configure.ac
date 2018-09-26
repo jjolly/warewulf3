@@ -188,6 +188,10 @@ AS_IF([test -z "$local_parted_path"], [
     PKG_CHECK_MODULES([DEVMAPPER], [devmapper])
 ])
 
+AS_IF([test -z "$local_ipxe_undionly_path"], [
+       PKG_CHECK_MODULES([LZMA], [liblzma])
+])
+
 AC_SUBST(PERLBIN)
 
 dnl# Get git version
