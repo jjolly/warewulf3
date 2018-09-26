@@ -167,6 +167,8 @@ AC_SUBST(fulldatadir)
 initramfsdir="$localstatedir/warewulf/initramfs/";
 AC_SUBST(initramfsdir)
 
+AC_PROG_CC
+
 BUSYBOX_CONFIG_EXTRA_LDLIBS=
 AS_IF([test -z "$local_busybox_path"], [
     PKG_CHECK_MODULES([TIRPC], [libtirpc], [
