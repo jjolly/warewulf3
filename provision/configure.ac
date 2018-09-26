@@ -179,6 +179,7 @@ AS_IF([test -z "$local_busybox_path"], [
             ])
         ])
     ])
+    PKG_CHECK_MODULES([SELINUX], [libselinux])
 ])
 AC_SUBST(BUSYBOX_CONFIG_EXTRA_LDLIBS)
 
