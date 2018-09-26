@@ -168,11 +168,13 @@ initramfsdir="$localstatedir/warewulf/initramfs/";
 AC_SUBST(initramfsdir)
 
 BUSYBOX_CONFIG_EXTRA_LDLIBS=
-PKG_CHECK_MODULES([TIRPC], [libtirpc], [
-    AS_IF([test -n "$TIRPC_LIBS"], [
-        m4_foreach_w([libopt], [$TIRPC_LIBS], [
-            opt="libopt"
-            BUSYBOX_CONFIG_EXTRA_LDLIBS="$BUSYBOX_CONFIG_EXTRA_LDLIBS ${opt#-l}"
+AS_IF([test -z "$local_busybox_path"], [
+    PKG_CHECK_MODULES([TIRPC], [libtirpc], [
+        AS_IF([test -n "$TIRPC_LIBS"], [
+            m4_foreach_w([libopt], [$TIRPC_LIBS], [
+                opt="libopt"
+                BUSYBOX_CONFIG_EXTRA_LDLIBS="$BUSYBOX_CONFIG_EXTRA_LDLIBS ${opt#-l}"
+            ])
         ])
     ])
 ])
