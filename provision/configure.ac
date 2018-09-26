@@ -183,6 +183,11 @@ AS_IF([test -z "$local_busybox_path"], [
 ])
 AC_SUBST(BUSYBOX_CONFIG_EXTRA_LDLIBS)
 
+AS_IF([test -z "$local_parted_path"], [
+    PKG_CHECK_MODULES([UUID], [uuid])
+    PKG_CHECK_MODULES([DEVMAPPER], [devmapper])
+])
+
 AC_SUBST(PERLBIN)
 
 dnl# Get git version
